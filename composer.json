@@ -1,0 +1,19 @@
+{
+    "name": "craftplugins/macroable",
+    "description": "Add globals, filters and functions to Twig from a config file.",
+    "type": "craft-plugin",
+    "version": "0.1.0",
+    "license": "proprietary",
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "craftplugins\\macroable\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Macroable",
+        "handle": "macroable"
+    }
+}
