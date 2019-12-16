@@ -39,36 +39,48 @@ class MacroableTwigExtension extends AbstractExtension implements GlobalsInterfa
     }
 
     /**
-     * @return array|\Generator
+     * @return array
      */
     public function getGlobals()
     {
+        $globals = [];
+
         foreach ($this->config['globals'] as $key => $value) {
             if ($value instanceof Closure) {
                 $value = $value();
             }
 
-            yield $key => $value;
+            $globals[$key] = $value;
         }
+
+        return $globals;
     }
 
     /**
-     * @return array|\Generator|\Twig\TwigFunction[]
+     * @return \Twig\TwigFunction[]
      */
     public function getFunctions()
     {
+        $functions = [];
+
         foreach ($this->config['functions'] as $key => $value) {
-            yield new TwigFunction($key, $value);
+            $functions[] = new TwigFunction($key, $value);
         }
+
+        return $functions;
     }
 
     /**
-     * @return array|\Generator|\Twig\TwigFilter[]
+     * @return \Twig\TwigFilter[]
      */
     public function getFilters()
     {
+        $filters = [];
+
         foreach ($this->config['filters'] as $key => $value) {
-            yield new TwigFilter($key, $value);
+            $filters[] = new TwigFilter($key, $value);
         }
+
+        return $filters;
     }
 }
